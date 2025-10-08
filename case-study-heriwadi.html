@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | Heriwadi Christian School</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* === CASE STUDY PAGE STYLES === */
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      color: #222;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: linear-gradient(90deg, #004aad, #0072ff);
+      color: white;
+      padding: 2rem 5%;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 4rem 10%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      color: #004aad;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    section p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .tech-stack span {
+      background: #eaf2ff;
+      color: #004aad;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .cta-buttons {
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(90deg, #004aad, #0072ff);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-buttons a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      background: #111;
+      color: #eee;
+      text-align: center;
+      padding: 2rem 5%;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 3rem 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======= NAVBAR (Same as Beta Solution) ======= -->
+  <nav class="navbar">
+    <div class="logo">Beta Solution</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+  </nav>
+
+  <!-- ======= HERO SECTION ======= -->
+  <header>
+    <h1>Heriwadi Christian School Website</h1>
+    <p>A modern, responsive, and brand-aligned school website built to connect parents, students, and educators.</p>
+  </header>
+
+  <!-- ======= OVERVIEW ======= -->
+  <section>
+    <h2>Project Overview</h2>
+    <p>
+      The Heriwadi Christian School website was developed to create a vibrant and professional digital presence for the institution. 
+      The goal was to reflect the school's values, simplify access to key information, and strengthen communication between the school and its community.
+    </p>
+  </section>
+
+  <!-- ======= CHALLENGE ======= -->
+  <section>
+    <h2>Challenge</h2>
+    <p>
+      The school needed a modern website that felt trustworthy, showcased its academic excellence, 
+      and aligned with its brand colors and Christian values. It also needed to be fast, mobile-friendly, 
+      and easy to navigate — especially for parents looking for admissions, updates, and contact details.
+    </p>
+  </section>
+
+  <!-- ======= SOLUTION ======= -->
+  <section>
+    <h2>Solution</h2>
+    <p>
+      I designed and developed a sleek, responsive website using HTML, CSS, and JavaScript — 
+      focusing on intuitive navigation, strong visual hierarchy, and accessibility. 
+      The layout seamlessly blended the school's colors and logo, resulting in a clean and inviting user interface.
+    </p>
+    <p>
+      The website structure was optimized for fast loading, and key sections like admissions, curriculum, and contact were made 
+      easily accessible for visitors on all devices.
+    </p>
+  </section>
+
+  <!-- ======= TECH STACK ======= -->
+  <section>
+    <h2>Tech Stack</h2>
+    <div class="tech-stack">
+      <span>HTML5</span>
+      <span>CSS3</span>
+      <span>JavaScript</span>
+      <span>GitHub Pages</span>
+    </div>
+  </section>
+
+  <!-- ======= RESULTS ======= -->
+  <section>
+    <h2>Results</h2>
+    <p>
+      The final website received overwhelmingly positive feedback from the school director, who appreciated its 
+      modern layout, color consistency with the school's identity, and overall smooth performance. 
+      Parents found it intuitive and informative, while mobile users enjoyed seamless access on phones and tablets.
+    </p>
+    <p>
+      This project reinforced the importance of blending clean design with responsive functionality to deliver meaningful digital experiences.
+    </p>
+  </section>
+
+  <!-- ======= CTA ======= -->
+  <div class="cta-buttons">
+    <a href="https://cephas-duke.github.io/heriwadiwebsite/" target="_blank">🔗 View Live Site</a>
+    <a href="index.html#portfolio">⬅ Back to Portfolio</a>
+  </div>
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <p>&copy; 2025 Beta Solution. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ======= MOBILE MENU SCRIPT ======= -->
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>
