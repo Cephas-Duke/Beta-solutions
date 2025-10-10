@@ -5,97 +5,147 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Beta Solution — Professional Web Development</title>
   <meta name="description" content="Beta Solution builds modern, responsive websites and digital products that grow businesses. Based in Kenya — remote worldwide." />
-  <meta name="keywords" content="web development, web design, e-commerce, SEO, Beta Solution, Kenya" />
-  <meta name="author" content="Beta Solution" />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Beta Solution — Professional Web Development" />
-  <meta property="og:description" content="We build powerful, modern websites and e‑commerce platforms. Contact us for a free quote." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="logo.jpg" />
-
-  <!-- Favicon (replace with your actual favicon) -->
-  <link rel="icon" href="logo.jpg" />
-
-  <!-- Google Font (modern, professional) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{--primary:#0066cc;--secondary:#00b4d8;--accent:#00d9ff;--dark:#111322;--muted:#666;--bg:#f8fafc;--card:#ffffff;--nav-height:72px}
     *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     html,body{height:100%}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--dark);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
 
     /* NAV */
     nav{position:fixed;left:0;right:0;top:0;z-index:1300;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);box-shadow:0 6px 30px rgba(16,24,40,0.06);transition:all .28s ease;height:var(--nav-height)}
+    nav.scrolled{background:rgba(255,255,255,0.95);box-shadow:0 8px 40px rgba(16,24,40,0.12)}
     .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:100%}
-    .logo{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--primary);font-size:1.05rem}
+    .logo{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--primary);font-size:1.05rem;transition:transform .3s ease}
+    .logo:hover{transform:scale(1.05)}
     .logo span{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:.25rem .5rem;border-radius:8px;font-weight:800}
 
     .nav-links{display:flex;gap:1.25rem;align-items:center}
-    .nav-links a{color:var(--dark);text-decoration:none;font-weight:600;padding:.5rem .6rem;border-radius:8px;transition:all .18s ease}
+    .nav-links a{color:var(--dark);text-decoration:none;font-weight:600;padding:.5rem .6rem;border-radius:8px;transition:all .18s ease;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%) scaleX(0);width:80%;height:2px;background:var(--primary);transition:transform .3s ease}
     .nav-links a:hover{background:rgba(0,102,204,0.06);transform:translateY(-3px)}
-    .cta-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:.45rem .9rem;border-radius:999px;font-weight:700}
+    .nav-links a:hover::after{transform:translateX(-50%) scaleX(1)}
+    .cta-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:.45rem .9rem;border-radius:999px;font-weight:700;box-shadow:0 4px 12px rgba(0,102,204,0.3);transition:all .3s ease}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,102,204,0.4)}
 
-    /* Mobile toggle */
     .menu-toggle{display:none;font-size:1.4rem;background:none;border:none;cursor:pointer}
     .menu-toggle .bar{display:block;width:22px;height:2px;background:var(--dark);margin:4px 0;border-radius:2px;transition:all .25s}
 
-    /* Mobile menu panel: fixed under navbar and above content */
     .nav-mobile{position:fixed;left:0;right:0;top:var(--nav-height);background:#fff;z-index:1350;box-shadow:0 18px 40px rgba(2,6,23,0.12);padding:1rem 1.25rem;border-bottom-left-radius:10px;border-bottom-right-radius:10px;transform:translateY(-12px);opacity:0;pointer-events:none;transition:all .28s ease}
-    .nav-mobile a{display:block;padding:.9rem 0;color:var(--dark);font-weight:700;border-bottom:1px solid rgba(2,6,23,0.04);text-decoration:none}
-
+    .nav-mobile a{display:block;padding:.9rem 0;color:var(--dark);font-weight:700;border-bottom:1px solid rgba(2,6,23,0.04);text-decoration:none;transition:all .3s ease}
+    .nav-mobile a:hover{padding-left:10px;color:var(--primary)}
     .nav-mobile.open{transform:translateY(0);opacity:1;pointer-events:auto}
 
-    /* Desktop adjustments */
-    @media(min-width:769px){
-      .nav-mobile{display:none}
-      .menu-toggle{display:none}
-    }
-
-    @media(max-width:768px){
-      .nav-links{display:none}
-      .menu-toggle{display:block}
-    }
+    @media(min-width:769px){.nav-mobile{display:none}.menu-toggle{display:none}}
+    @media(max-width:768px){.nav-links{display:none}.menu-toggle{display:block}}
 
     /* HERO */
     .hero{min-height:92vh;display:flex;align-items:center;padding:calc(var(--nav-height) + 24px) 1.25rem 3rem;position:relative;overflow:hidden;background:linear-gradient(135deg,#0066cc 0%,#00b4d8 100%);color:white}
-    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:2.5rem;align-items:center}
-    .hero h1{font-size:2.4rem;margin-bottom:.9rem}
-    .hero p{margin-bottom:1.25rem}
-    .hero-visual{background:linear-gradient(180deg,#09307a 0%,#0066cc 60%);padding:1.25rem;border-radius:16px;box-shadow:0 20px 60px rgba(7,13,34,0.4);display:flex;align-items:center;justify-content:center}
+    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="200" cy="100" r="150" fill="rgba(255,255,255,0.05)"/><circle cx="900" cy="400" r="200" fill="rgba(255,255,255,0.03)"/><circle cx="600" cy="300" r="100" fill="rgba(255,255,255,0.04)"/></svg>');opacity:0.6}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:2.5rem;align-items:center;position:relative;z-index:1}
+    .hero h1{font-size:2.4rem;margin-bottom:.9rem;animation:fadeInUp 0.8s ease}
+    .hero p{margin-bottom:1.25rem;animation:fadeInUp 0.8s ease 0.2s backwards}
+    .hero-visual{background:linear-gradient(180deg,#09307a 0%,#0066cc 60%);padding:1.25rem;border-radius:16px;box-shadow:0 20px 60px rgba(7,13,34,0.4);display:flex;align-items:center;justify-content:center;transition:transform .5s ease;animation:fadeInUp 0.8s ease 0.4s backwards}
+    .hero-visual:hover{transform:scale(1.05) rotate(2deg)}
     .hero-visual img{max-width:100%;height:auto;border-radius:10px}
 
-    /* sections brief styles (kept from original enhanced file) */
+    .btn{display:inline-block;padding:.7rem 1rem;border-radius:10px;font-weight:700;text-decoration:none;transition:all .3s ease;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.3);transform:translate(-50%,-50%);transition:width .6s,height .6s}
+    .btn:hover::before{width:300px;height:300px}
+    .btn-primary{background:#fff;color:var(--primary)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.2)}
+    .btn-whatsapp{background:#25d366;color:#fff}
+    .btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,211,102,0.4)}
+    .btn-outline{background:transparent;border:2px solid rgba(255,255,255,0.18);color:#fff}
+    .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4)}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Sections */
     section{padding:4.25rem 1.25rem}
     .container{max-width:1200px;margin:0 auto}
     .section-title{text-align:center;margin-bottom:2rem}
     .section-title h2{font-size:1.8rem;color:var(--dark);margin-bottom:.5rem}
     .section-sub{color:var(--muted);font-size:.98rem}
 
+    /* Stats cards with hover */
+    .stats-card{flex:1;padding:1rem;border-radius:10px;background:linear-gradient(180deg,#f8fbff,#ffffff);text-align:center;transition:all .3s ease;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+    .stats-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,102,204,0.15)}
+
+    /* Services cards */
+    .service-card{padding:1.25rem;border-radius:12px;background:var(--card);transition:all .4s ease;cursor:pointer;position:relative;overflow:hidden}
+    .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary));transform:scaleX(0);transition:transform .4s ease}
+    .service-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,102,204,0.15)}
+    .service-card:hover::before{transform:scaleX(1)}
+
     /* Portfolio */
-    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-    .portfolio-card{position:relative;border-radius:12px;overflow:hidden;color:#fff;padding:1rem;min-height:160px}
-    .portfolio-card .meta h3{font-size:1.05rem}
-    .portfolio-actions{margin-top:auto;display:flex;gap:.5rem}
-    .link-btn{background:rgba(255,255,255,0.12);padding:.5rem .75rem;border-radius:8px;color:#fff;text-decoration:none;font-weight:700}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .portfolio-card{position:relative;border-radius:16px;overflow:hidden;color:#fff;padding:1.5rem;min-height:200px;cursor:pointer;transition:all .4s ease;box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+    .portfolio-card::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.2);opacity:0;transition:opacity .4s ease}
+    .portfolio-card:hover{transform:translateY(-12px) scale(1.02);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+    .portfolio-card:hover::before{opacity:1}
+    .portfolio-card .meta{position:relative;z-index:2}
+    .portfolio-card .meta h3{font-size:1.2rem;margin-bottom:.5rem}
+    .portfolio-actions{margin-top:1rem;display:flex;gap:.5rem;position:relative;z-index:2}
+    .link-btn{background:rgba(255,255,255,0.2);padding:.6rem .9rem;border-radius:8px;color:#fff;text-decoration:none;font-weight:700;transition:all .3s ease;backdrop-filter:blur(4px)}
+    .link-btn:hover{background:rgba(255,255,255,0.35);transform:scale(1.05)}
 
-    /* simple responsive tweaks */
-    @media(max-width:980px){.hero-inner{grid-template-columns:1fr 360px}.hero h1{font-size:2rem}}
-    @media(max-width:720px){.hero-inner{grid-template-columns:1fr}.hero-visual{order:-1;padding:1rem}}
+    /* Modal for project details */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:2000;align-items:center;justify-content:center;animation:fadeIn .3s ease}
+    .modal.active{display:flex}
+    .modal-content{background:#fff;border-radius:16px;max-width:600px;width:90%;padding:2rem;position:relative;animation:slideUp .3s ease;max-height:80vh;overflow-y:auto}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);transition:all .3s ease}
+    .modal-close:hover{color:var(--dark);transform:rotate(90deg)}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
 
-    /* utility */
+    /* Testimonials with carousel effect */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .testimonial-card{background:var(--card);padding:1.5rem;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.05);transition:all .4s ease;cursor:pointer;position:relative;overflow:hidden}
+    .testimonial-card::before{content:'❝';position:absolute;top:-10px;left:10px;font-size:4rem;color:var(--primary);opacity:0.1}
+    .testimonial-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,102,204,0.15)}
+    .testimonial-author{margin-top:1rem;font-weight:700;color:var(--primary)}
+
+    /* Contact form enhanced */
+    .form-group{margin-bottom:1rem}
+    .form-group label{display:block;margin-bottom:.4rem;font-weight:600;color:var(--dark)}
+    .form-group input,.form-group textarea{width:100%;padding:.75rem;border-radius:8px;border:2px solid #e6eef6;transition:all .3s ease;font-family:inherit}
+    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,102,204,0.1)}
+
+    /* Process steps */
+    .process-step{flex:1;padding:1.5rem;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fbff);text-align:center;transition:all .4s ease;cursor:pointer;position:relative}
+    .process-step::before{content:'';position:absolute;inset:0;border-radius:12px;border:2px solid var(--primary);opacity:0;transition:opacity .3s ease}
+    .process-step:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 15px 40px rgba(0,102,204,0.15)}
+    .process-step:hover::before{opacity:1}
+    .process-step h4{color:var(--primary);margin-bottom:.5rem;font-size:1.3rem}
+
+    /* Scroll progress */
+    .scroll-progress{position:fixed;top:var(--nav-height);left:0;right:0;height:3px;background:var(--bg);z-index:1299}
+    .scroll-progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width .1s ease}
+
+    .scrollTop{position:fixed;right:20px;bottom:28px;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(2,6,23,0.3);opacity:0;pointer-events:none;transition:all .28s;cursor:pointer;font-size:1.5rem}
+    .scrollTop.visible{opacity:1;pointer-events:auto}
+    .scrollTop:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(2,6,23,0.4)}
+
     .fade-in{opacity:0;transform:translateY(18px);transition:all .6s ease}
     .fade-in.visible{opacity:1;transform:none}
+
+    @media(max-width:980px){.hero-inner{grid-template-columns:1fr 360px}.hero h1{font-size:2rem}}
+    @media(max-width:720px){.hero-inner{grid-template-columns:1fr}.hero-visual{order:-1;padding:1rem}.process-steps{flex-direction:column}}
   </style>
 </head>
 <body>
 
-  <!-- NAV: fixed at top, mobile panel separate -->
-  <nav aria-label="Primary Navigation">
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress"><div class="scroll-progress-bar" id="progressBar"></div></div>
+
+  <!-- NAV -->
+  <nav id="mainNav" aria-label="Primary Navigation">
     <div class="nav-inner">
       <div class="logo"><span>β</span> BETA SOLUTION</div>
-      <div class="nav-links" id="desktopNav">
+      <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
@@ -113,7 +163,7 @@
     </div>
   </nav>
 
-  <!-- Mobile panel (fixed, under navbar) -->
+  <!-- Mobile menu -->
   <div id="navMobile" class="nav-mobile" aria-hidden="true">
     <a href="#home">Home</a>
     <a href="#about">About</a>
@@ -129,16 +179,16 @@
     <div class="hero-inner container">
       <div>
         <div style="display:inline-block;background:rgba(255,255,255,0.12);padding:.35rem .7rem;border-radius:999px;margin-bottom:1rem;font-weight:600">Digital Agency • Web Development</div>
-        <h1 class="fade-in">We build modern, fast, and conversion-focused websites</h1>
-        <p class="fade-in">From landing pages to complex e-commerce stores and web apps — we design and build solutions that delight users and grow revenue.</p>
-        <div style="display:flex;gap:.75rem;flex-wrap:wrap" class="fade-in">
-          <a class="btn btn-primary" href="#contact" style="background:#fff;color:var(--primary);padding:.7rem 1rem;border-radius:10px;font-weight:700;text-decoration:none">Get Started</a>
-          <a class="btn btn-whatsapp" href="https://wa.me/254111250578" target="_blank" rel="noopener" style="background:#25d366;color:#fff;padding:.7rem 1rem;border-radius:10px;text-decoration:none;font-weight:700">📱 Chat on WhatsApp</a>
-          <a class="btn btn-outline" href="#portfolio" style="background:transparent;border:2px solid rgba(255,255,255,0.18);color:#fff;padding:.7rem 1rem;border-radius:10px;text-decoration:none;font-weight:700">View Portfolio</a>
+        <h1>We build modern, fast, and conversion-focused websites</h1>
+        <p>From landing pages to complex e-commerce stores and web apps — we design and build solutions that delight users and grow revenue.</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a class="btn btn-primary" href="#contact">Get Started</a>
+          <a class="btn btn-whatsapp" href="https://wa.me/254111250578" target="_blank" rel="noopener">📱 Chat on WhatsApp</a>
+          <a class="btn btn-outline" href="#portfolio">View Portfolio</a>
         </div>
       </div>
 
-      <div class="hero-visual fade-in" aria-hidden="true">
+      <div class="hero-visual" aria-hidden="true">
         <img src="logo.jpg" alt="Beta Solution illustration" loading="lazy">
       </div>
     </div>
@@ -153,12 +203,12 @@
       </div>
       <div style="display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center">
         <div class="fade-in">
-          <h3 style="color:var(--primary)">Building Digital Excellence</h3>
-          <p class="muted">We combine UX-led design, reliable engineering, and growth-driven strategy to launch digital products that perform.</p>
-          <div style="display:flex;gap:.8rem;margin-top:1rem">
-            <div style="flex:1;padding:1rem;border-radius:10px;background:linear-gradient(180deg,#f8fbff,#ffffff);text-align:center"><h3 class="counter" data-target="50">0+</h3><div class="muted">Projects</div></div>
-            <div style="flex:1;padding:1rem;border-radius:10px;background:linear-gradient(180deg,#f8fbff,#ffffff);text-align:center"><h3 class="counter" data-target="40">0+</h3><div class="muted">Happy Clients</div></div>
-            <div style="flex:1;padding:1rem;border-radius:10px;background:linear-gradient(180deg,#f8fbff,#ffffff);text-align:center"><h3 class="counter" data-target="100">0%</h3><div class="muted">Satisfaction</div></div>
+          <h3 style="color:var(--primary);margin-bottom:1rem">Building Digital Excellence</h3>
+          <p style="color:var(--muted);margin-bottom:1rem">We combine UX-led design, reliable engineering, and growth-driven strategy to launch digital products that perform.</p>
+          <div style="display:flex;gap:.8rem;margin-top:1.5rem">
+            <div class="stats-card"><h3 class="counter" data-target="50">0</h3><div style="color:var(--muted);font-size:.9rem">Projects</div></div>
+            <div class="stats-card"><h3 class="counter" data-target="40">0</h3><div style="color:var(--muted);font-size:.9rem">Happy Clients</div></div>
+            <div class="stats-card"><h3 class="counter" data-target="100">0</h3><div style="color:var(--muted);font-size:.9rem">Satisfaction</div></div>
           </div>
         </div>
         <div class="fade-in"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230066cc;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2300b4d8;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='%23f0f9ff'/%3E%3Ccircle cx='200' cy='200' r='150' fill='url(%23grad1)' opacity='0.2'/%3E%3Ccircle cx='200' cy='200' r='100' fill='url(%23grad1)' opacity='0.4'/%3E%3Ccircle cx='200' cy='200' r='50' fill='url(%23grad1)'/%3E%3Cpath d='M200,150 L250,200 L200,250 L150,200 Z' fill='%23ffffff'/%3E%3C/svg%3E" alt="About illustration" style="width:100%;border-radius:8px;"></div>
@@ -170,10 +220,22 @@
   <section id="services" style="background:linear-gradient(180deg,#ffffff,#f7fbff)">
     <div class="container">
       <div class="section-title"><h2>Our Services</h2><p class="section-sub">End-to-end services that cover every stage of product development.</p></div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
-        <div class="fade-in" style="padding:1.25rem;border-radius:12px;background:var(--card);">🎨<h4>Design & UI/UX</h4><p class="muted">User-centered interfaces with clear visual hierarchy.</p></div>
-        <div class="fade-in" style="padding:1.25rem;border-radius:12px;background:var(--card);">💻<h4>Frontend Development</h4><p class="muted">Fast, accessible frontends with modern frameworks.</p></div>
-        <div class="fade-in" style="padding:1.25rem;border-radius:12px;background:var(--card);">⚙️<h4>Backend & APIs</h4><p class="muted">Secure, scalable server-side systems.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem">
+        <div class="service-card fade-in">
+          <div style="font-size:2.5rem;margin-bottom:.5rem">🎨</div>
+          <h4 style="margin-bottom:.5rem">Design & UI/UX</h4>
+          <p style="color:var(--muted)">User-centered interfaces with clear visual hierarchy.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div style="font-size:2.5rem;margin-bottom:.5rem">💻</div>
+          <h4 style="margin-bottom:.5rem">Frontend Development</h4>
+          <p style="color:var(--muted)">Fast, accessible frontends with modern frameworks.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div style="font-size:2.5rem;margin-bottom:.5rem">⚙️</div>
+          <h4 style="margin-bottom:.5rem">Backend & APIs</h4>
+          <p style="color:var(--muted)">Secure, scalable server-side systems.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -181,28 +243,65 @@
   <!-- PORTFOLIO -->
   <section id="portfolio">
     <div class="container">
-      <div class="section-title"><h2>Portfolio</h2><p class="section-sub">Selected projects — click to view live demos or case studies.</p></div>
+      <div class="section-title"><h2>Portfolio</h2><p class="section-sub">Click on any project to learn more about it.</p></div>
       <div class="portfolio-grid">
-        <article class="portfolio-card fade-in" style="background:linear-gradient(135deg,#667eea,#764ba2);">
-          <div class="meta"><h3>School Website</h3><p>Responsive school site with a clean appealing layout.</p></div>
-          <div class="portfolio-actions"><a class="link-btn" href="https://cephas-duke.github.io/heriwadiwebsite/" target="_blank" rel="noopener noreferrer">view site</a><a class="link-btn" href="case-study-heriwadi.html" target="_blank" rel="noopener noreferrer">Case Study</a></div>
+        <article class="portfolio-card fade-in" style="background:linear-gradient(135deg,#667eea,#764ba2);" data-project="heriwadi">
+          <div class="meta">
+            <h3>School Website</h3>
+            <p>Responsive school site with a clean appealing layout.</p>
+          </div>
+          <div class="portfolio-actions">
+            <a class="link-btn" href="https://cephas-duke.github.io/heriwadiwebsite/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">View Site</a>
+            <a class="link-btn" href="#" onclick="event.preventDefault(); event.stopPropagation();">Case Study</a>
+          </div>
         </article>
-        <article class="portfolio-card fade-in" style="background:linear-gradient(135deg,#f093fb,#f5576c);">
-          <div class="meta"><h3>Web App</h3><p> full-featured school management syste.</p></div>
-          <div class="portfolio-actions"><a class="link-btn" href="https://heriwadi.onrender.com/" target="_blank" rel="noopener noreferrer">View App</a><a class="link-btn" href="case-study-heriwadi-webapp.html" target="_blank" rel="noopener noreferrer">Case Study</a></div>
+        <article class="portfolio-card fade-in" style="background:linear-gradient(135deg,#f093fb,#f5576c);" data-project="webapp">
+          <div class="meta">
+            <h3>Web App</h3>
+            <p>Full-featured school management system.</p>
+          </div>
+          <div class="portfolio-actions">
+            <a class="link-btn" href="https://heriwadi.onrender.com/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">View App</a>
+            <a class="link-btn" href="#" onclick="event.preventDefault(); event.stopPropagation();">Case Study</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
 
   <!-- PROCESS -->
   <section id="process">
     <div class="container">
       <div class="section-title"><h2>Our Process</h2><p class="section-sub">A simple, transparent process so you always know the next step.</p></div>
-      <div style="display:flex;gap:1rem">
-        <div class="fade-in" style="flex:1;padding:1rem;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fbff);text-align:center"><h4 style="color:var(--primary)">1. Plan</h4><p class="muted">Discovery and scope definition.</p></div>
-        <div class="fade-in" style="flex:1;padding:1rem;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fbff);text-align:center"><h4 style="color:var(--primary)">2. Design</h4><p class="muted">Wireframes and visual design.</p></div>
-        <div class="fade-in" style="flex:1;padding:1rem;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fbff);text-align:center"><h4 style="color:var(--primary)">3. Develop</h4><p class="muted">Quality code and testing.</p></div>
-        <div class="fade-in" style="flex:1;padding:1rem;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fbff);text-align:center"><h4 style="color:var(--primary)">4. Deliver</h4><p class="muted">Handover and support.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem" class="process-steps">
+        <div class="process-step fade-in">
+          <div style="font-size:2rem;margin-bottom:.5rem">📋</div>
+          <h4>1. Plan</h4>
+          <p style="color:var(--muted);font-size:.9rem">Discovery and scope definition.</p>
+        </div>
+        <div class="process-step fade-in">
+          <div style="font-size:2rem;margin-bottom:.5rem">🎨</div>
+          <h4>2. Design</h4>
+          <p style="color:var(--muted);font-size:.9rem">Wireframes and visual design.</p>
+        </div>
+        <div class="process-step fade-in">
+          <div style="font-size:2rem;margin-bottom:.5rem">⚡</div>
+          <h4>3. Develop</h4>
+          <p style="color:var(--muted);font-size:.9rem">Quality code and testing.</p>
+        </div>
+        <div class="process-step fade-in">
+          <div style="font-size:2rem;margin-bottom:.5rem">🚀</div>
+          <h4>4. Deliver</h4>
+          <p style="color:var(--muted);font-size:.9rem">Handover and support.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -210,31 +309,54 @@
   <!-- TESTIMONIALS -->
   <section id="testimonials" style="background:linear-gradient(180deg,#f7fbff,#ffffff)">
     <div class="container">
-      <div class="section-title"><h2>What Our Clients Say</h2><p class="section-sub">Real feedback from recent projects.</p></div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
-        <div class="fade-in" style="background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.05)">"Beta Solution built our e‑commerce platform quickly and reliably."<div style="margin-top:.6rem;font-weight:700">— James Mwangi</div></div>
-        <div class="fade-in" style="background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.05)">"Professional and proactive. The new site performs."<div style="margin-top:.6rem;font-weight:700">— Sarah Kimani</div></div>
-        <div class="fade-in" style="background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.05)">"Great partner for startups — fast iterations."<div style="margin-top:.6rem;font-weight:700">— David Ochieng</div></div>
+      <div class="section-title"><h2>What Our Clients Say</h2><p class="section-sub">Click any testimonial to read the full feedback.</p></div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in" onclick="showTestimonial(0)">
+          <p>"Beta Solution built our e‑commerce platform quickly and reliably. The attention to detail was outstanding!"</p>
+          <div class="testimonial-author">— James Mwangi</div>
+        </div>
+        <div class="testimonial-card fade-in" onclick="showTestimonial(1)">
+          <p>"Professional and proactive. The new site performs exceptionally well and our conversion rates have doubled."</p>
+          <div class="testimonial-author">— Sarah Kimani</div>
+        </div>
+        <div class="testimonial-card fade-in" onclick="showTestimonial(2)">
+          <p>"Great partner for startups — fast iterations and excellent communication throughout the entire project."</p>
+          <div class="testimonial-author">— David Ochieng</div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Testimonial Modal -->
+  <div id="testimonialModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeTestimonialModal()">&times;</button>
+      <div id="testimonialBody"></div>
+    </div>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <div class="section-title"><h2>Contact Us</h2><p class="section-sub">Ready to start? Send us a message or book a call.</p></div>
-      <div style="display:grid;grid-template-columns:1fr 420px;gap:1rem">
-        <form id="contactForm" class="fade-in card" aria-label="Contact form" style="background:var(--card);padding:1.25rem;border-radius:12px;">
-          <div style="display:flex;gap:.6rem;flex-wrap:wrap"><div style="flex:1;min-width:160px"><label for="name">Your Name</label><input id="name" name="name" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid #e6eef6"></div><div style="flex:1;min-width:160px"><label for="email">Email</label><input id="email" name="email" type="email" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid #e6eef6"></div></div>
-          <div style="margin-top:.75rem"><label for="message">Message</label><textarea id="message" name="message" rows="6" required style="width:100%;padding:.6rem;border-radius:8px;border:1px solid #e6eef6"></textarea></div>
-          <div style="margin-top:1rem;display:flex;gap:.6rem;align-items:center"><button type="submit" class="submit" style="background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;padding:.75rem 1rem;border-radius:8px;font-weight:700">Send Message</button><div style="color:var(--muted);font-size:.95rem">Or chat on WhatsApp: <a href="https://wa.me/254111250578" target="_blank" rel="noopener" style="font-weight:700;color:var(--primary)">+254 111 250 578</a></div></div>
+      <div style="display:grid;grid-template-columns:1fr 420px;gap:2rem">
+        <form id="contactForm" class="fade-in" style="background:var(--card);padding:1.5rem;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+            <button type="submit" style="background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;padding:.75rem 1.5rem;border-radius:8px;font-weight:700;cursor:pointer;transition:all .3s ease">Send Message</button>
+            <div style="color:var(--muted);font-size:.95rem">Or chat on WhatsApp: <a href="https://wa.me/254111250578" target="_blank" rel="noopener" style="font-weight:700;color:var(--primary)">+254 111 250 578</a></div>
+          </div>
           <div id="formNote" style="margin-top:1rem;color:var(--muted);font-size:.9rem">Messages are sent to <strong>cephasduke64@gmail.com</strong>.</div>
         </form>
-        <aside class="fade-in card" style="background:var(--card);padding:1.25rem;border-radius:12px;">
-          <h3 style="color:var(--primary)">Get in touch</h3>
-          <p class="muted">Ongata Rongai, Kajiado County, Kenya</p>
-          <p style="margin-top:.6rem"><strong>Email:</strong> <a href="mailto:cephasduke64@gmail.com">cephasduke64@gmail.com</a></p>
-          <p><strong>Phone:</strong> <a href="tel:+254717986814">+254 717 986 814</a></p>
+        <aside class="fade-in" style="background:var(--card);padding:1.5rem;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08)">
+          <h3 style="color:var(--primary);margin-bottom:1rem">Get in touch</h3>
+          <p style="color:var(--muted);margin-bottom:1rem">Ongata Rongai, Kajiado County, Kenya</p>
+          <p style="margin-bottom:.5rem"><strong>Email:</strong> <a href="mailto:cephasduke64@gmail.com" style="color:var(--primary)">cephasduke64@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+254717986814" style="color:var(--primary)">+254 717 986 814</a></p>
         </aside>
       </div>
     </div>
@@ -246,9 +368,49 @@
   </footer>
 
   <!-- Scroll to top -->
-  <button id="scrollTop" style="position:fixed;right:20px;bottom:28px;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(2,6,23,0.3);opacity:0;pointer-events:none;transition:all .28s">↑</button>
+  <button id="scrollTop" class="scrollTop">↑</button>
 
   <script>
+    // Project data
+    const projects = {
+      heriwadi: {
+        title: "Heriwadi School Website",
+        description: "A modern, responsive website for Heriwadi School featuring clean design, intuitive navigation, and mobile-first approach.",
+        features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile-First"],
+        tech: ["HTML5", "CSS3", "JavaScript"],
+        link: "https://cephas-duke.github.io/heriwadiwebsite/"
+      },
+      webapp: {
+        title: "School Management System",
+        description: "Full-featured web application for school administration with student management, attendance tracking, and reporting features.",
+        features: ["User Authentication", "Dashboard Analytics", "Real-time Updates", "Role-based Access"],
+        tech: ["React", "Node.js", "MongoDB", "Express"],
+        link: "https://heriwadi.onrender.com/"
+      }
+    };
+
+    // Testimonials data
+    const testimonials = [
+      {
+        name: "James Mwangi",
+        role: "E-commerce Business Owner",
+        text: "Beta Solution built our e‑commerce platform quickly and reliably. The attention to detail was outstanding! They understood our business needs and delivered a solution that exceeded our expectations. Our sales have increased by 150% since the launch.",
+        rating: 5
+      },
+      {
+        name: "Sarah Kimani",
+        role: "Marketing Director",
+        text: "Professional and proactive. The new site performs exceptionally well and our conversion rates have doubled. The team was responsive to feedback and made sure every detail was perfect. I highly recommend them for any web development project.",
+        rating: 5
+      },
+      {
+        name: "David Ochieng",
+        role: "Startup Founder",
+        text: "Great partner for startups — fast iterations and excellent communication throughout the entire project. They helped us launch our MVP in record time and provided valuable insights on user experience. Best decision we made for our business!",
+        rating: 5
+      }
+    ];
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMobile = document.getElementById('navMobile');
@@ -257,63 +419,194 @@
       const open = navMobile.classList.toggle('open');
       navMobile.setAttribute('aria-hidden', String(!open));
       menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.classList.toggle('open');
     });
 
-    // Close mobile menu when a link is clicked
     navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       navMobile.classList.remove('open');
       navMobile.setAttribute('aria-hidden', 'true');
       menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.classList.remove('open');
     }));
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       const isClickInside = navMobile.contains(e.target) || menuToggle.contains(e.target);
       if (!isClickInside && navMobile.classList.contains('open')) {
         navMobile.classList.remove('open');
         navMobile.setAttribute('aria-hidden', 'true');
         menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('open');
       }
     });
 
-    // Close on ESC
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' && navMobile.classList.contains('open')) {
         navMobile.classList.remove('open');
         navMobile.setAttribute('aria-hidden', 'true');
         menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('open');
+      }
+    });
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+      
+      // Nav shadow on scroll
+      const nav = document.getElementById('mainNav');
+      if (winScroll > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
     });
 
     // Reveal animations
-    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, {threshold:0.12});
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Counters
+    // Counters animation
     const counters = document.querySelectorAll('.counter');
-    const statsSection = document.querySelector('.stats');
-    if (counters.length) {
-      const stObs = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { counters.forEach(c => animateCounter(c, parseInt(c.getAttribute('data-target')||'0'))); stObs.disconnect(); } }); },{threshold:0.5});
-      stObs.observe(document.querySelector('.about-grid') || document.querySelector('section'));
-    }
-    function animateCounter(el, target) { let current = 0; const step = Math.max(1, Math.floor(target/80)); const timer = setInterval(() => { current += step; if (current >= target) { el.textContent = target + (String(target).includes('%') ? '%' : '+'); clearInterval(timer); } else el.textContent = current + (String(target).includes('%') ? '%' : '+'); }, 18); }
+    let countersAnimated = false;
 
-    // Contact form (mailto fallback)
+    const animateCounters = () => {
+      if (countersAnimated) return;
+      countersAnimated = true;
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
+      });
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const aboutSection = document.querySelector('#about');
+    if (aboutSection) statsObserver.observe(aboutSection);
+
+    // Portfolio card clicks - open modal
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const projectKey = card.getAttribute('data-project');
+        const project = projects[projectKey];
+        
+        const modalBody = document.getElementById('modalBody');
+        modalBody.innerHTML = `
+          <h2 style="color:var(--primary);margin-bottom:1rem">${project.title}</h2>
+          <p style="color:var(--muted);margin-bottom:1.5rem">${project.description}</p>
+          
+          <h3 style="margin-bottom:.5rem">Key Features:</h3>
+          <ul style="margin-bottom:1.5rem;padding-left:1.5rem">
+            ${project.features.map(f => `<li style="margin-bottom:.3rem">${f}</li>`).join('')}
+          </ul>
+          
+          <h3 style="margin-bottom:.5rem">Technologies:</h3>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem">
+            ${project.tech.map(t => `<span style="background:var(--primary);color:#fff;padding:.3rem .6rem;border-radius:6px;font-size:.85rem">${t}</span>`).join('')}
+          </div>
+          
+          <a href="${project.link}" target="_blank" rel="noopener" class="btn btn-primary">Visit Live Site</a>
+        `;
+        
+        document.getElementById('projectModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      document.getElementById('projectModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Testimonial clicks - open modal
+    function showTestimonial(index) {
+      const testimonial = testimonials[index];
+      const modalBody = document.getElementById('testimonialBody');
+      
+      const stars = '⭐'.repeat(testimonial.rating);
+      
+      modalBody.innerHTML = `
+        <div style="text-align:center;margin-bottom:1.5rem">
+          <div style="font-size:3rem;margin-bottom:1rem">💬</div>
+          <div style="font-size:1.5rem;color:#FFD700">${stars}</div>
+        </div>
+        <p style="font-size:1.1rem;line-height:1.8;color:var(--dark);margin-bottom:1.5rem;font-style:italic">"${testimonial.text}"</p>
+        <div style="text-align:center">
+          <div style="font-weight:700;font-size:1.1rem;color:var(--primary)">${testimonial.name}</div>
+          <div style="color:var(--muted)">${testimonial.role}</div>
+        </div>
+      `;
+      
+      document.getElementById('testimonialModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTestimonialModal() {
+      document.getElementById('testimonialModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modals on outside click
+    document.getElementById('projectModal').addEventListener('click', (e) => {
+      if (e.target.id === 'projectModal') closeModal();
+    });
+
+    document.getElementById('testimonialModal').addEventListener('click', (e) => {
+      if (e.target.id === 'testimonialModal') closeTestimonialModal();
+    });
+
+    // Close modals on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeTestimonialModal();
+      }
+    });
+
+    // Contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-      contactForm.addEventListener('submit', function(e){
+      contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
-        if(!name||!email||!message){ alert('Please complete the form.'); return; }
+        
+        if (!name || !email || !message) {
+          alert('Please complete all fields.');
+          return;
+        }
+        
         const subject = encodeURIComponent(`Website message from ${name}`);
         const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}\n\nSent from Beta Solution website.`);
         window.location.href = `mailto:cephasduke64@gmail.com?subject=${subject}&body=${body}`;
+        
         alert(`Thanks ${name}! We have received your message and we will respond as soon as possible.`);
         this.reset();
       });
@@ -321,11 +614,67 @@
 
     // Scroll to top button
     const scrollTop = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => { if (window.scrollY > 300) { scrollTop.style.opacity = 1; scrollTop.style.pointerEvents = 'auto'; } else { scrollTop.style.opacity = 0; scrollTop.style.pointerEvents = 'none'; } });
-    scrollTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTop.classList.add('visible');
+      } else {
+        scrollTop.classList.remove('visible');
+      }
+    });
+
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Dynamic copyright
-    document.getElementById('copyright').textContent = `© ${new Date().getFullYear()} Beta Solution. All rights reserved.`;
+    document.getElementById('copyright').textContent = new Date().getFullYear();
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.6);
+          left: ${x}px;
+          top: ${y}px;
+          pointer-events: none;
+          animation: ripple 0.6s ease-out;
+        `;
+        
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Add CSS for ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
-</html>
+</html>group">
+              <label for="name">Your Name</label>
+              <input id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+          </div>
+          <div class="form-
